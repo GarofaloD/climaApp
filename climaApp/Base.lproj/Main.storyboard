@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Weather Display View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="WeatherDisplayViewController" customModule="climaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="u4a-U6-dqu">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="21°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJ5-yK-hzG">
+                                <rect key="frame" x="257" y="231" width="145" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="91"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tzu-Ab-8hS">
+                                <rect key="frame" x="20" y="367" width="374" height="343"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-qi-d3B">
+                                <rect key="frame" x="339" y="62" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="ZLe-K7-r1p"/>
+                                    <constraint firstAttribute="width" constant="55" id="aRG-EV-5Zu"/>
+                                </constraints>
+                                <state key="normal" image="switch"/>
+                                <connections>
+                                    <segue destination="LoK-Nq-qpp" kind="presentation" identifier="goToCitySelection" id="cWl-Qu-VRk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-22-GEJ">
+                                <rect key="frame" x="28" y="757" width="179" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u4a-U6-dqu" secondAttribute="trailing" id="8km-Me-7i6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u4a-U6-dqu" secondAttribute="bottom" constant="-34" id="I73-Ng-Bxw"/>
+                            <constraint firstItem="u4a-U6-dqu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fSV-aM-7cD"/>
+                            <constraint firstItem="UDs-qi-d3B" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="knm-7Z-uns"/>
+                            <constraint firstItem="u4a-U6-dqu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-44" id="kss-U2-cn6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UDs-qi-d3B" secondAttribute="trailing" constant="20" id="s0g-Xm-TqP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="citylabel" destination="dAt-22-GEJ" id="yBM-6K-t7V"/>
+                        <outlet property="temperatureLabel" destination="oJ5-yK-hzG" id="qT9-8e-NcY"/>
+                        <outlet property="weatherIcon" destination="tzu-Ab-8hS" id="E0I-jm-xsE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-123.18840579710145" y="133.92857142857142"/>
+        </scene>
+        <!--City Selection View Controller-->
+        <scene sceneID="DB8-pc-1ep">
+            <objects>
+                <viewController id="LoK-Nq-qpp" customClass="CitySelectionViewController" customModule="climaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z4X-UA-S4x">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityBackground" translatesAutoresizingMaskIntoConstraints="NO" id="peq-zY-Odp">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruy-gu-ttj">
+                                <rect key="frame" x="20" y="65" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="iNs-5C-dKs"/>
+                                    <constraint firstAttribute="width" constant="45" id="nxR-rl-d8I"/>
+                                </constraints>
+                                <state key="normal" image="left"/>
+                                <connections>
+                                    <action selector="returnToWeatherWhenPressed:" destination="LoK-Nq-qpp" eventType="touchUpInside" id="ERH-bB-hUG"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter city name..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fic-Ig-bPl">
+                                <rect key="frame" x="60" y="199" width="294" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="vNu-Gi-mvP"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htt-7G-AEj">
+                                <rect key="frame" x="92" y="274" width="242" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="40"/>
+                                <state key="normal" title="Get Weather">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="getWeatherWhenPressed:" destination="LoK-Nq-qpp" eventType="touchUpInside" id="mej-LX-y51"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="peq-zY-Odp" firstAttribute="bottom" secondItem="9hF-fI-dFz" secondAttribute="bottom" constant="34" id="3pM-wF-otb"/>
+                            <constraint firstItem="peq-zY-Odp" firstAttribute="leading" secondItem="9hF-fI-dFz" secondAttribute="leading" id="4hD-cj-2lX"/>
+                            <constraint firstItem="ruy-gu-ttj" firstAttribute="leading" secondItem="9hF-fI-dFz" secondAttribute="leading" constant="20" id="5vV-0v-1XS"/>
+                            <constraint firstItem="Fic-Ig-bPl" firstAttribute="top" secondItem="9hF-fI-dFz" secondAttribute="top" constant="155" id="FRU-Bq-sAR"/>
+                            <constraint firstItem="9hF-fI-dFz" firstAttribute="trailing" secondItem="Fic-Ig-bPl" secondAttribute="trailing" constant="60" id="Mwc-sv-5Wk"/>
+                            <constraint firstItem="ruy-gu-ttj" firstAttribute="top" secondItem="9hF-fI-dFz" secondAttribute="top" constant="21" id="Nuo-hy-zp0"/>
+                            <constraint firstItem="Fic-Ig-bPl" firstAttribute="leading" secondItem="9hF-fI-dFz" secondAttribute="leading" constant="60" id="SlL-dP-X1F"/>
+                            <constraint firstItem="peq-zY-Odp" firstAttribute="centerX" secondItem="z4X-UA-S4x" secondAttribute="centerX" id="cxQ-Uw-r1P"/>
+                            <constraint firstItem="peq-zY-Odp" firstAttribute="trailing" secondItem="9hF-fI-dFz" secondAttribute="trailing" id="eaV-f3-LYZ"/>
+                            <constraint firstItem="peq-zY-Odp" firstAttribute="top" secondItem="9hF-fI-dFz" secondAttribute="top" constant="-44" id="fwj-cz-BBm"/>
+                            <constraint firstItem="Fic-Ig-bPl" firstAttribute="centerX" secondItem="z4X-UA-S4x" secondAttribute="centerX" id="xGA-M2-jKT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9hF-fI-dFz"/>
+                    </view>
+                    <connections>
+                        <outlet property="cityInput" destination="Fic-Ig-bPl" id="A7d-Ve-pOZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Oa-4n-22p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="702.89855072463774" y="133.92857142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="500" height="755"/>
+        <image name="cityBackground" width="600" height="399.5"/>
+        <image name="left" width="32" height="32"/>
+        <image name="switch" width="64" height="64"/>
+    </resources>
+</document>
