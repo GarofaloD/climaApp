@@ -18,10 +18,7 @@ class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate 
     
     //MARK:-  Properties / Instance Variables
     let locationManager = CLLocationManager()
-    
-    
-    
-    
+    //let weatherData = WeatherData()
     
     //MARK:- App Loading Functions
     override func viewDidLoad() {
@@ -47,7 +44,7 @@ class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate 
         if location.horizontalAccuracy > 0 {
             //stop updating the location
             locationManager.stopUpdatingLocation()
-            //Stops the delegate so we can stop receiving messages. Useful because the console will nopt be filled up with duplicates
+            //Stops the delegate so we can stop receiving messages. Useful because the console will nopt be filled up with duplicats
             locationManager.delegate = nil
             print("Latitude = \(location.coordinate.latitude), Longitude = \(location.coordinate.longitude)")
             
@@ -59,17 +56,18 @@ class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate 
             
             LocationService.instance.getCurrentLocation(latiude: latitude, longitude: longitude, appID: APPID) { (success) in
                 if success {
-
+                    self.weatherIcon.image = UIImage(named: WeatherData.instance.weatherIconName)
+                    self.temperatureLabel.text = String(WeatherData.instance.temperature)
+                    self.citylabel.text = WeatherData.instance.city
+                    print("Temperature is: \(WeatherData.instance.temperature)")
                 } else {
                     self.citylabel.text = "Connection issues..."
                 }
             }
-
-            
-            
         }
-        
     }
+    
+    
     
     //If location manager failed
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
