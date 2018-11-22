@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				8C513A412196486300332CA2 /* WeatherDisplayViewController.swift */,
-				8C513A29219642D000332CA2 /* AppDelegate.swift */,
 				8C513A432196487800332CA2 /* CitySelectionViewController.swift */,
+				8C513A29219642D000332CA2 /* AppDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

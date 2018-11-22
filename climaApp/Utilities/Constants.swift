@@ -17,6 +17,7 @@ let BASE_URL = "https://api.openweathermap.org/data/2.5"
 
 //Derived URLConstants
 let CURRENT_LOCATION = "\(BASE_URL)/weather?"
+let LOCATION_BY_NAME = "\(BASE_URL)/weather?q="
 
 
 
@@ -26,6 +27,7 @@ let CURRENT_LOCATION = "\(BASE_URL)/weather?"
 1. Current Location request:
 http://api.openweathermap.org/data/2.5/weather?lat=44.74910325064868&lon=-93.36654291547084&appid=2313f4377a1843683342bf4f4b105fa9
 
- 
+ 2. Location By City name:
+ http://api.openweathermap.org/data/2.5/weather?q=London
  
 */

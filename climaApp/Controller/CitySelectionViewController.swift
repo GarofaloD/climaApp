@@ -8,19 +8,24 @@
 
 import UIKit
 
+
+//Protocol declaration to be able to type the city that will be passed to the WeatherDisplayVC
+protocol ChangeCityDelegate {
+    func userEnteredANewCityName(city: String)
+}
+
+
 class CitySelectionViewController: UIViewController {
     
     //MARK:- Outlets
-    
     @IBOutlet weak var cityInput: UITextField!
     
-    
-    
     //MARK:- Properties
-    
-    
+    //By convention, when you call the protocol it needs to have the "delegate" as name. Also, we need to cast it a an optional to avoif the return of a nil
+    var delegate : ChangeCityDelegate?
     
 
+    //MARK:- App Loading functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,26 +33,18 @@ class CitySelectionViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
-    
-    
-    
-    
-    
-    
+    //MARK:- Functions/Actions
     @IBAction func getWeatherWhenPressed(_ sender: UIButton) {
+        
+        //check if there is text in that field
+        guard let cityName = cityInput.text else {return}
+        //If the delegate is not empty, apply the city name
+        delegate?.userEnteredANewCityName(city: cityName)
+        //And dismiss this vc, taking us to the main vc
+        self.dismiss(animated: true, completion: nil)
+        
     }
-    
-    
     
     
     @IBAction func returnToWeatherWhenPressed(_ sender: UIButton) {

@@ -60,6 +60,48 @@ class LocationService {
         }
     }
     
+    
+    func getLocationByName(q: String, appID: String, completion: @escaping CompletionHandler){
+        //api.openweathermap.org/data/2.5/weather?q=London&appid=14aa9615cabe2def98341826b995ddd5
+        
+        let requestLocationByName = "\(LOCATION_BY_NAME)\(q)&appid=\(appID)"
+        
+        Alamofire.request(requestLocationByName, method: .get, encoding: JSONEncoding.default).responseJSON { (response) in
+            
+            if response.result.error == nil {
+                
+                let weatherJSON : JSON = JSON(response.result.value as Any)
+                
+                if let temperatureAtLocation = weatherJSON["main"]["temp"].double{
+                    let temp = Int((temperatureAtLocation - 273.15) * (9/5) + 32)
+                    let city = weatherJSON["name"].stringValue
+                    let condition = weatherJSON["weather"][0]["id"].intValue
+                    let weatherIconName = IconService.instance.updateWeatherIcon(condition: condition)
+                    
+                    //self.weatherData.setWeatherData(temperature: temp, condition: condition, city: city, weatherIconName: weatherIconName)
+                    WeatherData.instance.setWeatherData(temperature: temp, condition: condition, city: city, weatherIconName: weatherIconName)
+                }
+                
+                print(self.weatherData.city)
+                print(self.weatherData.temperature)
+                print(self.weatherData.condition)
+                print(self.weatherData.weatherIconName)
+                completion(true)
+            
+            } else {
+                
+                completion(false)
+                print("Weather unavailable")
+                debugPrint(response.result.error as Any)
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    
 //    //JSON Parsing
 //    func updateWeatherData(json: JSON){
 //

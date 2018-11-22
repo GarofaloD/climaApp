@@ -9,8 +9,8 @@
 import UIKit
 import CoreLocation
 
-class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate {
-
+class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate, ChangeCityDelegate {
+    
     //MARK:- Outlets
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -18,7 +18,6 @@ class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate 
     
     //MARK:-  Properties / Instance Variables
     let locationManager = CLLocationManager()
-    //let weatherData = WeatherData()
     
     //MARK:- App Loading Functions
     override func viewDidLoad() {
@@ -36,6 +35,7 @@ class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate 
 
     //Mark:- Location Methods
     
+    //Weather at current location
     //If location manager succeds, we have to receive a notification when the location has been updated
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Tapping into the last element of the array of locations which will include the most accurate one
@@ -68,6 +68,20 @@ class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     
+    //Weather at typed location
+    func userEnteredANewCityName(city: String) {
+        LocationService.instance.getLocationByName(q: city, appID: APPID) { (success) in
+            if success {
+                self.weatherIcon.image = UIImage(named: WeatherData.instance.weatherIconName)
+                self.temperatureLabel.text = String(WeatherData.instance.temperature)
+                self.citylabel.text = WeatherData.instance.city
+                print("Temperature is: \(WeatherData.instance.temperature)")
+            } else {
+                 self.citylabel.text = "Connection issues..."
+            }
+        }
+    }
+    
     
     //If location manager failed
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -76,7 +90,15 @@ class WeatherDisplayViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     
-    
-
+    //Segue from  City selection VC
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //checking existance of segue name
+        if segue.identifier == "goToCitySelection" {
+            //Casting CitySelection as the destination
+            let destinationVC = segue.destination as! CitySelectionViewController
+            //With this, we make this vc to manage all the information passed by the other vc
+            destinationVC.delegate = self
+        }
+    }
 
 }
